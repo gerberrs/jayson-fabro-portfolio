@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jayson Q. Fabro — Digital Marketing & E-Commerce Coordinator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A0A0A;
+    --true-black:#000000;
+    --paper:#FAFAFA;
+    --slate:#3D3D3D;
+    --pale:#E8E8E8;
+    --line:#D4D4D4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink);color:var(--paper);}
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,250,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px;margin:0 auto;padding:16px 32px;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .nav-name{font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;letter-spacing:-0.01em;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--slate);text-decoration:none;
+    text-transform:uppercase;letter-spacing:0.05em;
+    transition:color 0.2s;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  @media(max-width:680px){.nav-links{display:none;}}
+
+  /* HERO */
+  header{padding:90px 0 70px;border-bottom:1px solid var(--line);}
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:0.12em;color:var(--slate);
+    text-transform:uppercase;margin-bottom:28px;
+    display:flex;flex-wrap:wrap;gap:8px 14px;
+  }
+  .eyebrow span{white-space:nowrap;}
+  .eyebrow span::before{content:"·";margin-right:14px;color:var(--line);}
+  .eyebrow span:first-child::before{display:none;}
+  h1{
+    font-family:'Archivo',sans-serif;
+    font-weight:900;
+    font-size:clamp(42px,8vw,86px);
+    line-height:0.95;
+    letter-spacing:-0.03em;
+    margin-bottom:24px;
+  }
+  .hero-sub{
+    font-size:clamp(17px,2.2vw,21px);
+    max-width:620px;color:var(--slate);
+    margin-bottom:36px;
+  }
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;text-transform:uppercase;letter-spacing:0.05em;
+    padding:14px 26px;text-decoration:none;
+    border:1.5px solid var(--ink);
+    transition:all 0.2s;cursor:pointer;
+  }
+  .btn-solid{background:var(--ink);color:var(--paper);}
+  .btn-solid:hover{background:var(--paper);color:var(--ink);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);}
+
+  /* SECTION SHELL */
+  section{padding:72px 0;border-bottom:1px solid var(--line);}
+  .sec-head{
+    display:flex;align-items:baseline;gap:16px;margin-bottom:44px;
+  }
+  .sec-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;color:var(--slate);
+  }
+  .sec-title{
+    font-family:'Archivo',sans-serif;font-weight:800;
+    font-size:clamp(24px,4vw,34px);letter-spacing:-0.02em;
+  }
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:32px;}}
+  .about-body p{margin-bottom:18px;color:var(--slate);font-size:16px;}
+  .about-body strong{color:var(--ink);font-weight:600;}
+  .stat-card{border:1.5px solid var(--ink);padding:24px;}
+  .stat-row{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line);}
+  .stat-row:last-child{border-bottom:none;}
+  .stat-num{font-family:'Archivo',sans-serif;font-weight:800;font-size:26px;}
+  .stat-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--slate);text-transform:uppercase;align-self:center;text-align:right;}
+
+  /* WORK / EXPERIENCE */
+  .exp{display:flex;gap:28px;padding:28px 0;border-bottom:1px solid var(--line);}
+  .exp:last-child{border-bottom:none;}
+  .exp-date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate);white-space:nowrap;padding-top:4px;min-width:90px;}
+  .exp-role{font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;letter-spacing:-0.01em;margin-bottom:2px;}
+  .exp-co{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:14px;}
+  .exp-list{list-style:none;}
+  .exp-list li{position:relative;padding-left:18px;margin-bottom:8px;font-size:15px;color:var(--slate);}
+  .exp-list li::before{content:"—";position:absolute;left:0;color:var(--ink);}
+  @media(max-width:620px){.exp{flex-direction:column;gap:10px;}}
+
+  /* SCREENSHOT ARTIFACTS */
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
+  @media(max-width:680px){.work-grid{grid-template-columns:1fr;}}
+  .artifact{border:1.5px solid var(--ink);background:#fff;}
+  .artifact-bar{
+    display:flex;align-items:center;gap:8px;
+    padding:10px 14px;border-bottom:1.5px solid var(--ink);
+    font-family:'JetBrains Mono',monospace;font-size:11px;
+    text-transform:uppercase;letter-spacing:0.04em;
+  }
+  .dot{width:9px;height:9px;border:1.5px solid var(--ink);border-radius:50%;}
+  .artifact-img{width:100%;display:block;filter:grayscale(100%);}
+  .artifact-caption{padding:14px;font-size:14px;color:var(--slate);border-top:1px solid var(--line);}
+  .artifact-caption b{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;font-family:'Inter';}
+  .placeholder-img{
+    width:100%;aspect-ratio:16/10;background:var(--pale);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate);
+    text-align:center;padding:20px;
+  }
+
+  /* SKILLS */
+  .skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  @media(max-width:760px){.skill-cols{grid-template-columns:1fr;gap:24px;}}
+  .skill-group h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:var(--slate);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-size:13px;padding:6px 12px;border:1px solid var(--line);background:#fff;transition:all 0.2s;}
+  .tag:hover{border-color:var(--ink);}
+
+  /* CALENDAR */
+  .cal-frame{border:1.5px solid var(--ink);overflow:hidden;}
+  .cal-frame iframe{display:block;width:100%;border:0;}
+  .cal-note{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate);margin-bottom:20px;}
+
+  /* CONTACT */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  @media(max-width:620px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-card{border:1.5px solid var(--ink);padding:28px;}
+  .contact-card h4{font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:18px;}
+  .contact-row{display:flex;gap:10px;margin-bottom:12px;font-size:15px;color:var(--slate);align-items:baseline;}
+  .contact-row .k{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink);text-transform:uppercase;min-width:56px;}
+  .contact-row a{color:var(--slate);text-decoration:none;border-bottom:1px solid var(--line);}
+  .contact-row a:hover{color:var(--ink);border-color:var(--ink);}
+
+  /* FOOTER */
+  footer{padding:40px 0;text-align:center;}
+  .foot-name{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(36px,9vw,92px);letter-spacing:-0.03em;line-height:1;margin-bottom:20px;}
+  .foot-meta{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--slate);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-name">JAYSON Q. FABRO</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">
+      <span>Shopee</span><span>Lazada</span><span>Meta Ads</span><span>Email Marketing</span><span>Events</span>
+    </div>
+    <h1>Digital Marketing<br>&amp; E-Commerce<br>Coordinator</h1>
+    <p class="hero-sub">Jayson Q. Fabro — a results-driven marketing professional managing e-commerce stores, ad campaigns, and email systems that keep online businesses running and growing.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn btn-solid">View Work</a>
+      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">01</span><h2 class="sec-title">About</h2></div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm a <strong>results-driven marketing professional</strong> with a proven track record of boosting marketing efficiency for companies and multiple clients.</p>
+        <p>My work spans <strong>e-commerce store management</strong> on Shopee and Lazada, <strong>social media and email marketing</strong>, content calendar creation, and end-to-end <strong>event marketing</strong> — both virtual and in-person.</p>
+        <p>I'm passionate about leveraging technology to streamline workflows and deliver exceptional results, whether that's managing a catalog of nearly 1,000 products or running multi-channel campaigns from strategy to reporting.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-row"><span class="stat-num">944</span><span class="stat-label">Products Managed<br>(Shopee)</span></div>
+        <div class="stat-row"><span class="stat-num">4+</span><span class="stat-label">Years in<br>Marketing</span></div>
+        <div class="stat-row"><span class="stat-num">3</span><span class="stat-label">Companies<br>&amp; Clients</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">02</span><h2 class="sec-title">Experience</h2></div>
+
+    <div class="exp">
+      <div class="exp-date">2023 — 2026</div>
+      <div>
+        <div class="exp-role">Digital &amp; Event Marketing Coordinator</div>
+        <div class="exp-co">Valvoline — HH Asia Trading Inc.</div>
+        <ul class="exp-list">
+          <li>Created and distributed engaging content including blog posts, articles, and infographics</li>
+          <li>Managed email marketing campaigns including segmentation, automation, and reporting</li>
+          <li>Planned and executed virtual and in-person events — conferences, workshops, webinars, and trade shows</li>
+          <li>Developed marketing materials including promotional flyers, brochures, and registration forms</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-date">2022 — 2023</div>
+      <div>
+        <div class="exp-role">Digital Marketing</div>
+        <div class="exp-co">Summer E-Bike</div>
+        <ul class="exp-list">
+          <li>Built and managed email lists, designed newsletters, and tracked results</li>
+          <li>Created and implemented multi-channel campaigns to reach target audiences</li>
+          <li>Managed social media communities and tracked performance</li>
+          <li>Optimized website content for SEO and user experience</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp">
+      <div class="exp-date">2021 — 2022</div>
+      <div>
+        <div class="exp-role">Sales Executive</div>
+        <div class="exp-co">S.E.A Olympus Marketing</div>
+        <ul class="exp-list">
+          <li>Sold high-quality solid surface products to architects, designers, and contractors</li>
+          <li>Developed and maintained key client relationships in the construction and design industry</li>
+          <li>Proactively identified and pursued new sales opportunities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">03</span><h2 class="sec-title">Work</h2></div>
+    <div class="work-grid">
+
+      <div class="artifact">
+        <div class="artifact-bar"><span class="dot"></span> shopee_seller_center</div>
+        <div class="placeholder-img">[ Replace with: Product listing Shopee.png ]</div>
+        <div class="artifact-caption"><b>Product Catalog Management</b>Managed 944 products on Shopee Seller Center — listings, pricing, stock, and promotions across a live store.</div>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-bar"><span class="dot"></span> marketing_centre</div>
+        <div class="placeholder-img">[ Replace with: Marketing Centre.png ]</div>
+        <div class="artifact-caption"><b>Marketing Campaigns</b>Ran promotions and ad placements through Shopee's Marketing Centre to drive store traffic and sales.</div>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-bar"><span class="dot"></span> business_insights</div>
+        <div class="placeholder-img">[ Replace with: Manage Shopee Business Insight.png ]</div>
+        <div class="artifact-caption"><b>Performance Reporting</b>Tracked store performance and sales insights to inform pricing and inventory decisions.</div>
+      </div>
+
+      <div class="artifact">
+        <div class="artifact-bar"><span class="dot"></span> shipping_settings</div>
+        <div class="placeholder-img">[ Replace with: manage Shipping Settings.png ]</div>
+        <div class="artifact-caption"><b>Operations &amp; Fulfillment</b>Configured shipping settings and logistics to keep order fulfillment running smoothly.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">04</span><h2 class="sec-title">Tools &amp; Skills</h2></div>
+    <div class="skill-cols">
+      <div class="skill-group">
+        <h4>E-Commerce &amp; Ads</h4>
+        <div class="skill-tags">
+          <span class="tag">Shopee</span><span class="tag">Lazada</span>
+          <span class="tag">Meta Ads</span><span class="tag">Google Ads</span>
+          <span class="tag">Mailchimp</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; Operations</h4>
+        <div class="skill-tags">
+          <span class="tag">Excel</span><span class="tag">VLOOKUP</span>
+          <span class="tag">Pivot Tables</span><span class="tag">Xero</span>
+          <span class="tag">Oracle CRM</span><span class="tag">Google Sheets</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Content &amp; Productivity</h4>
+        <div class="skill-tags">
+          <span class="tag">Canva</span><span class="tag">CapCut</span>
+          <span class="tag">Google Slides</span><span class="tag">MS Word</span>
+          <span class="tag">PowerPoint</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">05</span><h2 class="sec-title">Availability</h2></div>
+    <p class="cal-note">// Check open slots below and reach out to book a time.</p>
+    <div class="cal-frame">
+      <!-- Replace SRC with Jayson's public Google Calendar embed URL -->
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=jaysonfabro27%40gmail.com&ctz=Asia%2FManila&mode=WEEK&showTitle=0&showPrint=0&showCalendars=0"
+        height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num mono">06</span><h2 class="sec-title">Contact</h2></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h4>Get in Touch</h4>
+        <div class="contact-row"><span class="k">Email</span><a href="mailto:jaysonfabro27@gmail.com">jaysonfabro27@gmail.com</a></div>
+        <div class="contact-row"><span class="k">Phone</span><span>+63 997 540 7607</span></div>
+        <div class="contact-row"><span class="k">Loc</span><span>Taguig City, Metro Manila, Philippines</span></div>
+      </div>
+      <div class="contact-card">
+        <h4>Languages</h4>
+        <div class="contact-row"><span class="k">EN</span><span>English — Fluent</span></div>
+        <div class="contact-row"><span class="k">TL</span><span>Tagalog — Fluent</span></div>
+        <div class="contact-row"><span class="k">Edu</span><span>BSBA, Major in Marketing Management</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-name">LET'S WORK<br>TOGETHER</div>
+    <a href="mailto:jaysonfabro27@gmail.com" class="btn btn-solid">Send an Email</a>
+    <p class="foot-meta" style="margin-top:28px;">© 2026 Jayson Q. Fabro · Digital Marketing &amp; E-Commerce Coordinator</p>
+  </div>
+</footer>
+
+</body>
+</html>

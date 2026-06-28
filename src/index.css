@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ink: #0A0A0A;
+    --true-black: #000000;
+    --paper: #FAFAFA;
+    --slate: #3D3D3D;
+    --pale: #E8E8E8;
+    --line: #D4D4D4;
+    --accent: #C8732E;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  @keyframes loaderFill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+}
