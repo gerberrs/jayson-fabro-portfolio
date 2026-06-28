@@ -69,7 +69,6 @@ export default function Events() {
               <img
                 src={eventPhotos[viewing]}
                 alt={`HH Asia Trading event photo ${viewing + 1}`}
-                loading="lazy"
                 className="max-w-full max-h-[70vh] object-contain"
               />
               {eventPhotos.length > 1 && (
