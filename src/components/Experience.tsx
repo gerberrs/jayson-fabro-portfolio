@@ -1,37 +1,44 @@
-
-
 export default function Experience() {
   const experiences = [
     {
-      date: '2023 — 2026',
-      role: 'Digital & Event Marketing Coordinator',
-      company: 'Valvoline — HH Asia Trading Inc.',
+      date: 'Present',
+      role: 'E-Commerce Supervisor',
+      company: 'Domaco Singapore',
       bullets: [
-        'Created and distributed engaging content including blog posts, articles, and infographics',
-        'Managed email marketing campaigns including segmentation, automation, and reporting',
-        'Planned and executed virtual and in-person events — conferences, workshops, webinars, and trade shows',
-        'Developed marketing materials including promotional flyers, brochures, and registration forms'
+        'Developed and executed content calendars, promotional campaigns, and social media strategies aligned with business goals',
+        'Created engaging social media content, including graphics, captions, and short-form videos using Canva and CapCut',
+        'Assisted in managing Shopee and Lazada stores, including product listings, promotions, and campaign execution'
+      ]
+    },
+    {
+      date: '2023 — 2026',
+      role: 'Digital Marketing Assistant',
+      company: 'HH Asia Trading Inc. - Valvoline',
+      bullets: [
+        'Create and distribute engaging content including blog posts, articles, infographics, and videos',
+        'Manage email marketing campaigns, including segmentation, automation, and reporting',
+        'Assist with planning and executing both virtual and in-person events, including conferences, workshops, webinars, and trade shows',
+        'Develop event marketing materials, such as promotional flyers, brochures'
       ]
     },
     {
       date: '2022 — 2023',
-      role: 'Digital Marketing',
+      role: 'Digital Marketing Assistant',
       company: 'Summer E-Bike',
       bullets: [
-        'Built and managed email lists, designed newsletters, and tracked results',
-        'Created and implemented multi-channel campaigns to reach target audiences',
-        'Managed social media communities and tracked performance',
-        'Optimized website content for SEO and user experience'
+        'Create and implement campaigns across multiple channels to reach target audiences',
+        'Create engaging content, manage social media communities, and track performance',
+        'Optimize website content for SEO and user experience, ensuring it\'s engaging and informative'
       ]
     },
     {
       date: '2021 — 2022',
       role: 'Sales Executive',
-      company: 'S.E.A Olympus Marketing',
+      company: 'S.E.A Olympus Marketing Inc',
       bullets: [
-        'Sold high-quality solid surface products to architects, designers, and contractors',
-        'Developed and maintained key client relationships in the construction and design industry',
-        'Proactively identified and pursued new sales opportunities'
+        'Drive sales of our high-quality solid surface products to architects, designers, contractors, and homeowners',
+        'Develop and maintain relationships with key clients in the construction and design industry',
+        'Form initial contact to closing deals, and effectively manage the sales process'
       ]
     }
   ];

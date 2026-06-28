@@ -13,6 +13,7 @@ import Events from './components/Events';
 import Loader from './components/Loader';
 import { useScrollAnimations } from './hooks/useScrollAnimations';
 import VideoItem from './components/VideoItem';
+import HeroAbout from './components/HeroAbout';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,8 +25,7 @@ function App() {
       {!isLoaded && <Loader onComplete={() => setIsLoaded(true)} />}
       <div className={`transition-opacity duration-700 ease-in-out ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <Nav />
-        <Hero />
-        <About />
+        <HeroAbout/>
         <Experience />
         <Work />
         <VideoItem/>

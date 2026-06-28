@@ -7,7 +7,7 @@ interface LoaderProps {
 export default function Loader({ onComplete }: LoaderProps) {
   const [text, setText] = useState('');
   const [isFading, setIsFading] = useState(false);
-  const fullText = '> loading_portfolio.exe';
+  const fullText = '> welcome_jayson.exe';
 
   useEffect(() => {
     let index = 0;

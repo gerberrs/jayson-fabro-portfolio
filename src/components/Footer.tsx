@@ -6,7 +6,7 @@ export default function Footer() {
           LET'S WORK<br />TOGETHER
         </div>
         <p className="font-['JetBrains_Mono'] text-[12px] text-[#cfcfcf] mt-7">
-          © 2026 Jayson Q. Fabro · Digital Marketing &amp; E-Commerce Coordinator
+          © 2024 Jayson Q. Fabro · Digital Marketing &amp; E-Commerce Supervisor
         </p>
       </div>
     </footer>

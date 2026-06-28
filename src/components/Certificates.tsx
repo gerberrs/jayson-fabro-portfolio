@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface Certificate {
   id: string;
@@ -8,139 +8,116 @@ interface Certificate {
 }
 
 const certificates: Certificate[] = [
-  {
-    id: 'cert-canva',
-    name: 'Canva',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Canva.png',
-  },
-  {
-    id: 'cert-data-entry',
-    name: 'Data Entry',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Data Entry.png',
-  },
-  {
-    id: 'cert-graphics-design',
-    name: 'Graphics Design',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Graphics Design.png',
-  },
-  {
-    id: 'cert-lead-generation',
-    name: 'Lead Generation',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Lead Generation.png',
-  },
-  {
-    id: 'cert-meta-advertising',
-    name: 'Meta Advertising',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Meta Advertising (1).png',
-  },
-  {
-    id: 'cert-social-media',
-    name: 'Social Media Management',
-    issuer: 'Certificate of Completion',
-    image: '/assets/work/certs/Certificate of Completion - Social Media Management.png',
-  },
+  { id: 'cert-canva', name: 'Canva', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Canva.png' },
+  { id: 'cert-data-entry', name: 'Data Entry', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Data Entry.png' },
+  { id: 'cert-graphics-design', name: 'Graphics Design', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Graphics Design.png' },
+  { id: 'cert-lead-generation', name: 'Lead Generation', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Lead Generation.png' },
+  { id: 'cert-meta-advertising', name: 'Meta Advertising', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Meta Advertising (1).png' },
+  { id: 'cert-social-media', name: 'Social Media Management', issuer: 'Certificate of Completion', image: '/assets/work/certs/Certificate of Completion - Social Media Management.png' },
 ];
 
-const DRAG_THRESHOLD = 60;
+const ROTATION_SPEED = 0.15; // degrees per frame, continuous
 
 export default function Certificates() {
   const [viewing, setViewing] = useState<Certificate | null>(null);
-  const [activeIndex, setActiveIndex] = useState(2);
+  const [isPaused, setIsPaused] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const rafRef = useRef<number | null>(null);
+  const isDraggingRef = useRef(false);
+  const dragStartX = useRef(0);
+  const dragStartRotation = useRef(0);
+  const movedRef = useRef(false);
 
-  const dragState = useRef({
-    isDown: false,
-    startX: 0,
-    accumulated: 0,
-    moved: false,
-  });
+  const anglePerCard = 360 / certificates.length;
 
-  const clampIndex = (i: number) => Math.max(0, Math.min(certificates.length - 1, i));
+  // Continuous rotation loop
+  useEffect(() => {
+    const tick = () => {
+      if (!isPaused) {
+        setRotation((r) => r + ROTATION_SPEED);
+      }
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isPaused]);
 
   const handlePointerDown = (e: React.PointerEvent) => {
-    dragState.current.isDown = true;
-    dragState.current.startX = e.clientX;
-    dragState.current.accumulated = 0;
-    dragState.current.moved = false;
+    isDraggingRef.current = true;
+    movedRef.current = false;
+    dragStartX.current = e.clientX;
+    dragStartRotation.current = rotation;
+    setIsPaused(true);
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    const state = dragState.current;
-    if (!state.isDown) return;
-
-    const delta = e.clientX - state.startX;
-    if (Math.abs(delta) > 4) state.moved = true;
-
-    state.accumulated += delta;
-    state.startX = e.clientX;
-
-    if (state.accumulated > DRAG_THRESHOLD) {
-      setActiveIndex((prev) => clampIndex(prev - 1));
-      state.accumulated = 0;
-    } else if (state.accumulated < -DRAG_THRESHOLD) {
-      setActiveIndex((prev) => clampIndex(prev + 1));
-      state.accumulated = 0;
-    }
+    if (!isDraggingRef.current) return;
+    const delta = e.clientX - dragStartX.current;
+    if (Math.abs(delta) > 4) movedRef.current = true;
+    setRotation(dragStartRotation.current + delta * 0.3);
   };
 
-  const endDrag = () => {
-    dragState.current.isDown = false;
-    dragState.current.accumulated = 0;
+  const handlePointerUp = () => {
+    isDraggingRef.current = false;
     setTimeout(() => {
-      dragState.current.moved = false;
+      movedRef.current = false;
     }, 0);
   };
 
-  const handleCardClick = (i: number, cert: Certificate) => {
-    if (dragState.current.moved) return;
-    if (i === activeIndex) {
-      setViewing(cert);
-    } else {
-      setActiveIndex(i);
-    }
+  const handleCardClick = (cert: Certificate) => {
+    if (movedRef.current) return;
+    setViewing(cert);
   };
 
+  const radius = 280; // px, controls how wide the wheel's orbit is
+
   return (
-    <section id="certificates" className="gsap-section py-[72px] border-b border-[var(--line)]">
+    <section id="certificates" className="gsap-section py-[72px] border-b border-[var(--line)] relative overflow-hidden">
       <div className="max-w-[1080px] mx-auto px-8">
         <div className="flex items-baseline gap-4 mb-[44px] overflow-hidden">
-          <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[var(--accent)]">04</span>
+          <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[var(--accent)]">05</span>
           <h2 className="gsap-header-title font-['Archivo'] font-extrabold text-[clamp(24px,4vw,34px)] tracking-[-0.02em]">
             Certificates
           </h2>
         </div>
 
         <div
-          className="relative h-[260px] sm:h-[320px] md:h-[400px] w-full flex items-center justify-center [perspective:1200px] mt-4 select-none touch-pan-y cursor-grab active:cursor-grabbing overflow-hidden sm:overflow-visible"
+          className="relative h-[280px] sm:h-[340px] md:h-[400px] w-full flex items-center justify-center [perspective:1400px] mt-4 select-none touch-pan-y cursor-grab active:cursor-grabbing overflow-hidden"
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
-          onPointerUp={endDrag}
-          onPointerLeave={endDrag}
-          onPointerCancel={endDrag}
+          onPointerUp={handlePointerUp}
+          onPointerLeave={handlePointerUp}
+          onPointerCancel={handlePointerUp}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
           {certificates.map((cert, i) => {
-            const offset = i - activeIndex;
-            const absOffset = Math.abs(offset);
-            const zIndex = 50 - absOffset;
-            const scale = 1 - absOffset * 0.15;
-            const rotateY = offset * -15;
-            const translateX = offset * 50;
+            const angle = i * anglePerCard + rotation;
+            const rad = (angle * Math.PI) / 180;
+
+            // Position on a circle, viewed from the side (orbit going left-right, depth via z)
+            const x = Math.sin(rad) * radius;
+            const z = Math.cos(rad) * radius;
+
+            // Normalize z to 0-1 for scale/opacity (front of wheel = closer/bigger, back = smaller/fainter)
+            const depthFactor = (z + radius) / (2 * radius); // 0 = back, 1 = front
+            const scale = 0.55 + depthFactor * 0.45;
+            const opacity = 0.25 + depthFactor * 0.75;
+            const zIndex = Math.round(depthFactor * 100);
 
             return (
               <button
                 key={cert.id}
-                onClick={() => handleCardClick(i, cert)}
-                className="absolute w-[180px] sm:w-[240px] md:w-[320px] text-left border-[1.5px] border-[var(--ink)] bg-white cursor-pointer transition-[transform,opacity,box-shadow] duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:shadow-[5px_5px_12px_rgba(0,0,0,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                onClick={() => handleCardClick(cert)}
+                className="absolute w-[160px] sm:w-[200px] md:w-[260px] text-left border-[1.5px] border-[var(--ink)] bg-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
                 style={{
                   zIndex,
-                  transform: `translateX(${translateX}%) scale(${scale}) rotateY(${rotateY}deg)`,
-                  opacity: absOffset > 2 ? 0 : 1 - absOffset * 0.2,
-                  pointerEvents: absOffset > 2 ? 'none' : 'auto',
+                  transform: `translateX(${x}px) scale(${scale})`,
+                  opacity,
+                  pointerEvents: depthFactor > 0.3 ? 'auto' : 'none',
                 }}
               >
                 <img
@@ -157,19 +134,6 @@ export default function Certificates() {
               </button>
             );
           })}
-        </div>
-
-        <div className="flex justify-center gap-2 mt-6">
-          {certificates.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActiveIndex(i)}
-              aria-label={`Go to certificate ${i + 1}`}
-              className={`w-2 h-2 rounded-full border border-[var(--accent)] transition-colors ${
-                i === activeIndex ? 'bg-[var(--accent)]' : 'bg-transparent'
-              }`}
-            />
-          ))}
         </div>
       </div>
 
@@ -196,7 +160,6 @@ export default function Certificates() {
               <img
                 src={viewing.image}
                 alt={viewing.name}
-                loading="lazy"
                 className="max-w-full max-h-[70vh] object-contain"
               />
             </div>

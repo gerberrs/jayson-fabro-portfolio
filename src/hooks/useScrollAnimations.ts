@@ -12,7 +12,30 @@ export function useScrollAnimations(isLoaded: boolean) {
       let mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // 1. Hero Animation
+        // 0. Hero → About Takeover Transition
+        const wrap = document.querySelector('#hero-about-wrap');
+        const heroText = document.querySelector('.hero-text-col');
+        const heroPhoto = document.querySelector('.hero-photo-col');
+        const aboutSection = document.querySelector('.about-section');
+
+        if (wrap && heroText && heroPhoto && aboutSection) {
+          gsap.set(aboutSection, { yPercent: 100 });
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: wrap,
+              start: 'top top',
+              end: '+=100%',
+              scrub: 1,
+              pin: true,
+            }
+          })
+            .to(heroText, { xPercent: -100, opacity: 0, ease: 'none' }, 0)
+            .to(heroPhoto, { xPercent: 100, opacity: 0, ease: 'none' }, 0)
+            .to(aboutSection, { yPercent: 0, ease: 'none' }, 0);
+        }
+
+        // 1. Hero Content Animation (initial load only, no exit)
         const tl = gsap.timeline();
         tl.fromTo('.gsap-hero-eyebrow span',
           { y: 25, opacity: 0 },
@@ -34,8 +57,10 @@ export function useScrollAnimations(isLoaded: boolean) {
             "-=0.4"
           );
 
-        // 2. Section Headers
+        // 2. Section Headers — enter AND exit
         gsap.utils.toArray('.gsap-section').forEach((section: any) => {
+          if (section.id === 'about') return;
+
           const num = section.querySelector('.gsap-header-num');
           const title = section.querySelector('.gsap-header-title');
 
@@ -51,38 +76,42 @@ export function useScrollAnimations(isLoaded: boolean) {
                 scrollTrigger: {
                   trigger: section,
                   start: 'top 85%',
-                  once: true
+                  end: 'bottom 15%',
+                  toggleActions: 'play reverse play reverse',
                 }
               }
             );
           }
         });
 
-        // 3. Staggered Cards (Work & Certificates)
+        // 3. Staggered Cards (Work & Certificates) — enter AND exit, alternating sides
         gsap.utils.toArray('.gsap-stagger-group').forEach((group: any) => {
           const cards = group.querySelectorAll('.gsap-stagger-card');
           if (cards.length > 0) {
-            gsap.fromTo(cards,
-              { y: 60, opacity: 0, scale: 0.92, rotateZ: -2 },
-              {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                rotateZ: 0,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: group,
-                  start: 'top 85%',
-                  once: true
+            cards.forEach((card: any, i: number) => {
+              const fromLeft = i % 2 === 0;
+              gsap.fromTo(card,
+                { x: fromLeft ? -120 : 120, opacity: 0, scale: 0.92 },
+                {
+                  x: 0,
+                  opacity: 1,
+                  scale: 1,
+                  duration: 0.8,
+                  delay: i * 0.12,
+                  ease: 'power3.out',
+                  scrollTrigger: {
+                    trigger: group,
+                    start: 'top 85%',
+                    end: 'bottom 15%',
+                    toggleActions: 'play reverse play reverse',
+                  }
                 }
-              }
-            );
+              );
+            });
           }
         });
 
-        // 4. Events Photos
+        // 4. Events Photos — enter AND exit
         const eventGroup = document.querySelector('.gsap-event-group');
         if (eventGroup) {
           const photos = eventGroup.querySelectorAll('.gsap-event-photo');
@@ -98,13 +127,14 @@ export function useScrollAnimations(isLoaded: boolean) {
               scrollTrigger: {
                 trigger: eventGroup,
                 start: 'top 85%',
-                once: true
+                end: 'bottom 15%',
+                toggleActions: 'play reverse play reverse',
               }
             }
           );
         }
 
-        // 5. Experience Timeline
+        // 5. Experience Timeline — enter AND exit
         gsap.utils.toArray('.gsap-exp-entry').forEach((entry: any) => {
           gsap.fromTo(entry,
             { x: -60, opacity: 0 },
@@ -116,13 +146,14 @@ export function useScrollAnimations(isLoaded: boolean) {
               scrollTrigger: {
                 trigger: entry,
                 start: 'top 85%',
-                once: true
+                end: 'bottom 15%',
+                toggleActions: 'play reverse play reverse',
               }
             }
           );
         });
 
-        // 6. Skills Tags
+        // 6. Skills Tags — enter AND exit
         gsap.utils.toArray('.gsap-skills-group').forEach((group: any) => {
           const tags = group.querySelectorAll('.gsap-skill-tag');
           gsap.fromTo(tags,
@@ -137,7 +168,8 @@ export function useScrollAnimations(isLoaded: boolean) {
               scrollTrigger: {
                 trigger: group,
                 start: 'top 85%',
-                once: true
+                end: 'bottom 15%',
+                toggleActions: 'play reverse play reverse',
               }
             }
           );
