@@ -24,7 +24,7 @@ export default function HeroAbout() {
                 <a href="#work" className="gsap-hero-btn font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.05em] py-[14px] px-[26px] no-underline border-[1.5px] border-[var(--ink)] transition-all duration-200 cursor-pointer bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--paper)] hover:text-[var(--ink)] text-center">
                   View Work
                 </a>
-                <a href="/resume.pdf" download className="gsap-hero-btn font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.05em] py-[14px] px-[26px] no-underline border-[1.5px] border-[var(--ink)] transition-all duration-200 cursor-pointer bg-transparent text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] text-center">
+                <a href="/assets/CV/Jayson Fabro CV 2026.pdf" download className="gsap-hero-btn font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.05em] py-[14px] px-[26px] no-underline border-[1.5px] border-[var(--ink)] transition-all duration-200 cursor-pointer bg-transparent text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] text-center">
                   Download Resume
                 </a>
                 <a href="#contact" className="gsap-hero-btn font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.05em] py-[14px] px-[26px] no-underline border-[1.5px] border-[var(--ink)] transition-all duration-200 cursor-pointer bg-transparent text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] text-center">
