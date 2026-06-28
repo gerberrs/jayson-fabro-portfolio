@@ -11,8 +11,8 @@ export function useScrollAnimations(isLoaded: boolean) {
     const ctx = gsap.context(() => {
       let mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // 0. Hero → About Takeover Transition
+      // Hero → About Takeover Transition — desktop only
+      mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
         const wrap = document.querySelector('#hero-about-wrap');
         const heroText = document.querySelector('.hero-text-col');
         const heroPhoto = document.querySelector('.hero-photo-col');
@@ -34,7 +34,9 @@ export function useScrollAnimations(isLoaded: boolean) {
             .to(heroPhoto, { xPercent: 100, opacity: 0, ease: 'none' }, 0)
             .to(aboutSection, { yPercent: 0, ease: 'none' }, 0);
         }
+      });
 
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
         // 1. Hero Content Animation (initial load only, no exit)
         const tl = gsap.timeline();
         tl.fromTo('.gsap-hero-eyebrow span',
