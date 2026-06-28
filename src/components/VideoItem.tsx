@@ -49,7 +49,7 @@ export default function Videos() {
       <div className="max-w-[1080px] mx-auto px-8">
         <div className="sec-head-wrap mb-[44px]">
           <div className="flex items-baseline gap-4 mb-2 overflow-hidden">
-            <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[#cfcfcf]">04.5</span>
+            <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[#cfcfcf]">03.5</span>
             <h2 className="gsap-header-title font-['Archivo'] font-extrabold text-[clamp(24px,4vw,34px)] tracking-[-0.02em] text-[var(--paper)]">
               Video Edits
             </h2>

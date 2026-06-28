@@ -78,7 +78,7 @@ export default function Certificates() {
     <section id="certificates" className="gsap-section py-[72px] border-b border-[var(--line)] relative overflow-hidden">
       <div className="max-w-[1080px] mx-auto px-8">
         <div className="flex items-baseline gap-4 mb-[44px] overflow-hidden">
-          <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[var(--accent)]">05</span>
+          <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[var(--accent)]">04</span>
           <h2 className="gsap-header-title font-['Archivo'] font-extrabold text-[clamp(24px,4vw,34px)] tracking-[-0.02em]">
             Certificates
           </h2>
