@@ -1,8 +1,8 @@
 export default function HeroAbout() {
   return (
-    <div id="hero-about-wrap" className="relative h-screen overflow-hidden">
+    <div id="hero-about-wrap" className="relative lg:h-screen lg:overflow-hidden">
       {/* HERO LAYER */}
-      <header id="hero-section" className="absolute inset-0 flex items-center border-b border-[var(--line)] bg-[var(--paper)] z-10">
+      <header id="hero-section" className="lg:absolute lg:inset-0 flex items-center border-b border-[var(--line)] bg-[var(--paper)] z-10 pt-[90px] pb-[70px] lg:py-0">
         <div className="max-w-[1080px] mx-auto px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_260px] gap-8 lg:gap-12 items-center">
             <div className="hero-text-col order-2 lg:order-1 text-center lg:text-left flex flex-col items-center lg:items-start">
@@ -17,9 +17,9 @@ export default function HeroAbout() {
                 <div className="gsap-hero-title-line">E-Commerce</div>
                 <div className="gsap-hero-title-line">Professional</div>
               </h1>
-             <p className="gsap-hero-sub text-[clamp(17px,2.2vw,21px)] max-w-[620px] text-[var(--slate)] mb-9">
-  Jayson Q. Fabro — a results-driven E-Commerce Supervisor managing online stores, ad campaigns, and email systems that keep businesses running and growing.
-</p>
+              <p className="gsap-hero-sub text-[clamp(17px,2.2vw,21px)] max-w-[620px] text-[var(--slate)] mb-9">
+                Jayson Q. Fabro — a results-driven E-Commerce Supervisor managing online stores, ad campaigns, and email systems that keep businesses running and growing.
+              </p>
               <div className="flex flex-col sm:flex-row gap-[14px] sm:flex-wrap justify-center lg:justify-start">
                 <a href="#work" className="gsap-hero-btn font-['JetBrains_Mono'] text-[13px] uppercase tracking-[0.05em] py-[14px] px-[26px] no-underline border-[1.5px] border-[var(--ink)] transition-all duration-200 cursor-pointer bg-[var(--ink)] text-[var(--paper)] hover:bg-[var(--paper)] hover:text-[var(--ink)] text-center">
                   View Work
@@ -52,8 +52,8 @@ export default function HeroAbout() {
       </header>
 
       {/* ABOUT LAYER */}
-    <section id="about" className="about-section absolute inset-0 py-[72px] bg-[var(--ink)] text-[var(--paper)] z-20 flex items-center overflow-hidden">
-  <div className="max-w-[1080px] mx-auto px-8 w-full">
+      <section id="about" className="about-section lg:absolute lg:inset-0 py-[72px] bg-[var(--ink)] text-[var(--paper)] z-20 flex items-center lg:overflow-hidden">
+        <div className="max-w-[1080px] mx-auto px-8 w-full">
           <div className="flex items-baseline gap-4 mb-[44px] overflow-hidden">
             <span className="gsap-header-num font-['JetBrains_Mono'] text-[13px] text-[#cfcfcf]">01</span>
             <h2 className="gsap-header-title font-['Archivo'] font-extrabold text-[clamp(24px,4vw,34px)] tracking-[-0.02em] text-[var(--paper)]">About</h2>
