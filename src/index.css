@@ -10,33 +10,47 @@
     --slate: #3D3D3D;
     --pale: #E8E8E8;
     --line: #D4D4D4;
-    --accent: #C8732E;
+    --accent: #0A0A0A;
   }
+
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
-    background: var(--paper);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(rgba(10, 10, 10, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 10, 10, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
     color: var(--ink);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
+
   ::selection {
     background: var(--ink);
     color: var(--paper);
   }
+
   .mono {
     font-family: 'JetBrains Mono', monospace;
   }
 
   @keyframes loaderFill {
-    0% { width: 0%; }
-    100% { width: 100%; }
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
   }
 }

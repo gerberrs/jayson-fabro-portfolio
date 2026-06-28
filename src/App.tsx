@@ -12,6 +12,7 @@ import Certificates from './components/Certificates';
 import Events from './components/Events';
 import Loader from './components/Loader';
 import { useScrollAnimations } from './hooks/useScrollAnimations';
+import VideoItem from './components/VideoItem';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +28,7 @@ function App() {
         <About />
         <Experience />
         <Work />
+        <VideoItem/>
         <Certificates />
         <Events />
         <Skills />
